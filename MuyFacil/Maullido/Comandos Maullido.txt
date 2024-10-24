@@ -1,0 +1,15 @@
+ip: 10.129.204.219
+ping 10.129.204.219
+nmap -sV 10.129.204.219
+nmap -sV 10.129.204.219 -oN Maquina1/EscaneoServiciosNmap.txt
+	Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-10-23 10:00 -05
+	Nmap scan report for 10.129.204.219
+	Host is up (0.22s latency).
+	Not shown: 999 closed tcp ports (reset)
+	PORT   STATE SERVICE VERSION
+	23/tcp open  telnet?
+
+	Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+	Nmap done: 1 IP address (1 host up) scanned in 181.51 seconds
+telnet 10.129.204.219 23
+

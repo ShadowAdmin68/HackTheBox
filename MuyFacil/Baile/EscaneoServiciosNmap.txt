@@ -1,0 +1,1 @@
+# Nmap 7.94SVN scan initiated Wed Oct 23 11:37:33 2024 as: nmap -sV -oN EscaneoServiciosNmap.txt 10.129.231.145
