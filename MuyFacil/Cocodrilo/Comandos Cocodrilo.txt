@@ -1,0 +1,159 @@
+IP:10.129.153.223
+┌──(shadowadmin㉿ZL2130)-[~/Documents/HackTheBox/MuyFacil/Cocodrilo]
+└─$ ping 10.129.153.223
+PING 10.129.153.223 (10.129.153.223) 56(84) bytes of data.
+64 bytes from 10.129.153.223: icmp_seq=1 ttl=63 time=326 ms
+64 bytes from 10.129.153.223: icmp_seq=2 ttl=63 time=96.7 ms
+64 bytes from 10.129.153.223: icmp_seq=3 ttl=63 time=97.4 ms
+^C
+--- 10.129.153.223 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2002ms
+rtt min/avg/max/mdev = 96.726/173.503/326.408/108.120 ms
+     
+┌──(shadowadmin㉿ZL2130)-[~/Documents/HackTheBox/MuyFacil/Cocodrilo]
+└─$ sudo nmap -sV 10.129.153.223      
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-10-24 15:29 -05
+Nmap scan report for 10.129.153.223
+Host is up (0.17s latency).
+Not shown: 998 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     vsftpd 3.0.3
+80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
+Service Info: OS: Unix
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 10.23 seconds
+        
+┌──(shadowadmin㉿ZL2130)-[~/Documents/HackTheBox/MuyFacil/Cocodrilo]
+└─$ ftp 10.129.32.93
+
+ftp: Can't connect to `10.129.32.93:21': No route to host
+ftp: Can't connect to `10.129.32.93:ftp'
+ftp> ls
+Not connected.
+ftp> exit
+                                                                             
+┌──(shadowadmin㉿ZL2130)-[~/Documents/HackTheBox/MuyFacil/Cocodrilo]
+└─$ ftp 10.129.153.223
+Connected to 10.129.153.223.
+220 (vsFTPd 3.0.3)
+Name (10.129.153.223:shadowadmin): Anonimous
+530 This FTP server is anonymous only.
+ftp: Login failed
+ftp> ls
+530 Please login with USER and PASS.
+530 Please login with USER and PASS.
+ftp: Can't bind for data connection: Address already in use
+ftp> exit
+221 Goodbye.
+                                                                             
+┌──(shadowadmin㉿ZL2130)-[~/Documents/HackTheBox/MuyFacil/Cocodrilo]
+└─$ ftp 10.129.153.223
+Connected to 10.129.153.223.
+220 (vsFTPd 3.0.3)
+Name (10.129.153.223:shadowadmin): Error encountered; login aborted.
+ftp> exit
+221 Goodbye.
+                                                                             
+┌──(shadowadmin㉿ZL2130)-[~/Documents/HackTheBox/MuyFacil/Cocodrilo]
+└─$ ftp 10.129.153.223
+Connected to 10.129.153.223.
+220 (vsFTPd 3.0.3)
+Name (10.129.153.223:shadowadmin): anonymous
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> ls
+229 Entering Extended Passive Mode (|||44942|)
+150 Here comes the directory listing.
+-rw-r--r--    1 ftp      ftp            33 Jun 08  2021 allowed.userlist
+-rw-r--r--    1 ftp      ftp            62 Apr 20  2021 allowed.userlist.passwd
+226 Directory send OK.
+ftp> get allowed.userlist
+local: allowed.userlist remote: allowed.userlist
+229 Entering Extended Passive Mode (|||49029|)
+150 Opening BINARY mode data connection for allowed.userlist (33 bytes).
+100% |********************************|    33        0.33 KiB/s    00:00 ETA
+226 Transfer complete.
+33 bytes received in 00:00 (0.09 KiB/s)
+ftp> get allowed.userlist.passwd
+local: allowed.userlist.passwd remote: allowed.userlist.passwd
+229 Entering Extended Passive Mode (|||43020|)
+150 Opening BINARY mode data connection for allowed.userlist.passwd (62 bytes).
+100% |********************************|    62        0.64 KiB/s    00:00 ETA
+226 Transfer complete.
+62 bytes received in 00:00 (0.18 KiB/s)
+ftp> 
+──(shadowadmin㉿ZL2130)-[~/Documents/HackTheBox/MuyFacil/Cocodrilo]
+└─$ ls
+EscaneoNmap2.txt  allowed.userlist.passwd
+EscaneosNmap.txt  bee0fb84-0dcf-455c-93c7-22c90b0d80b7.pdf
+allowed.userlist
+                                                                             
+┌──(shadowadmin㉿ZL2130)-[~/Documents/HackTheBox/MuyFacil/Cocodrilo]
+└─$ cat allowed.userlist
+aron
+pwnmeow
+egotisticalsw
+admin
+                                                                             
+┌──(shadowadmin㉿ZL2130)-[~/Documents/HackTheBox/MuyFacil/Cocodrilo]
+└─$ cat allowed.userlist.passwd 
+root
+Supersecretpassword1
+@BaASD&9032123sADS
+rKXM59ESxesUFHAd
+                                                                             
+┌──(shadowadmin㉿ZL2130)-[~/Documents/HackTheBox/MuyFacil/Cocodrilo]
+└─$ 
+┌──(shadowadmin㉿ZL2130)-[~/Documents/HackTheBox/MuyFacil/Cocodrilo]
+└─$ sudo apt update
+
+[sudo] password for shadowadmin: 
+Hit:1 http://http.kali.org/kali kali-rolling InRelease
+Get:2 https://dl.google.com/linux/chrome/deb stable InRelease [1825 B]
+Get:3 https://dl.google.com/linux/chrome/deb stable/main amd64 Packages [1219 B]
+Fetched 3044 B in 1s (4433 B/s)     
+277 packages can be upgraded. Run 'apt list --upgradable' to see them.
+                                                                             
+┌──(shadowadmin㉿ZL2130)-[~/Documents/HackTheBox/MuyFacil/Cocodrilo]
+└─$ sudo apt install gobuster
+
+
+┌──(shadowadmin㉿ZL2130)-[~/Documents/HackTheBox/MuyFacil/Cocodrilo]
+└─$ gobuster dir --url http://10.129.153.223/ --wordlist /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-small.txt -x php,html
+===============================================================
+Gobuster v3.6
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.129.153.223/
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-small.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.6
+[+] Extensions:              php,html
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/.html                (Status: 403) [Size: 279]
+/.php                 (Status: 403) [Size: 279]
+/index.html           (Status: 200) [Size: 58565]
+/login.php            (Status: 200) [Size: 1577]
+/assets               (Status: 301) [Size: 317] [--> http://10.129.153.223/assets/]
+/css                  (Status: 301) [Size: 314] [--> http://10.129.153.223/css/]
+/js                   (Status: 301) [Size: 313] [--> http://10.129.153.223/js/]
+/logout.php           (Status: 302) [Size: 0] [--> login.php]
+/config.php           (Status: 200) [Size: 0]
+/fonts                (Status: 301) [Size: 316] [--> http://10.129.153.223/fonts/]
+/dashboard            (Status: 301) [Size: 320] [--> http://10.129.153.223/dashboard/]
+Progress: 35845 / 244932 (14.63%)^C
+[!] Keyboard interrupt detected, terminating.
+Progress: 35880 / 244932 (14.65%)
+===============================================================
+Finished
+===============================================================
+                                                                             
+┌──(shadowadmin㉿ZL2130)-[~/Documents/HackTheBox/MuyFacil/Cocodrilo]
+└─$
