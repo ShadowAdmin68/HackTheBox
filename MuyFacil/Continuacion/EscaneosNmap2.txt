@@ -1,0 +1,18 @@
+# Nmap 7.94SVN scan initiated Thu Oct 24 15:13:37 2024 as: /usr/lib/nmap/nmap -sC -sV -oN /home/shadowadmin/Documents/HackTheBox/MuyFacil/Continuacion/EscaneosNmap2.txt 10.129.32.93
+Nmap scan report for 10.129.32.93
+Host is up (0.21s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT     STATE SERVICE VERSION
+3306/tcp open  mysql?
+| mysql-info: 
+|   Protocol: 10
+|   Version: 5.5.5-10.3.27-MariaDB-0+deb10u1
+|   Thread ID: 186
+|   Capabilities flags: 63486
+|   Some Capabilities: DontAllowDatabaseTableColumn, Support41Auth, InteractiveClient, ODBCClient, ConnectWithDatabase, FoundRows, SupportsTransactions, IgnoreSigpipes, IgnoreSpaceBeforeParenthesis, SupportsCompression, Speaks41ProtocolOld, Speaks41ProtocolNew, SupportsLoadDataLocal, LongColumnFlag, SupportsAuthPlugins, SupportsMultipleStatments, SupportsMultipleResults
+|   Status: Autocommit
+|   Salt: \0y2)xC#$)CU_aH%{bVh
+|_  Auth Plugin Name: mysql_native_password
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Oct 24 15:17:01 2024 -- 1 IP address (1 host up) scanned in 204.85 seconds
